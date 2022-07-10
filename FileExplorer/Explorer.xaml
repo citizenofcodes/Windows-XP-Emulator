@@ -8,18 +8,18 @@
         Title="Explorer" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="61*"></ColumnDefinition>
-            <ColumnDefinition Width="339*"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="30"/>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Click="BackButtonClick"> Back</Button>
-        <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="16" Text="C:\\" TextAlignment="Left" KeyDown="UrlTextBox_KeyDown"></TextBox>
+        <Image Source="Resources/backbtn.png" HorizontalAlignment="Center" Width="32" MouseDown="BackButtonClick"></Image>
+        <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1" FontSize="16" Text="C:\\" TextAlignment="Left" KeyDown="UrlTextBox_KeyDown"/>
 
         <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-        <WrapPanel x:Name="ExplorerGrid"  Background="Gray" ></WrapPanel>
+            <WrapPanel x:Name="ExplorerGrid"  Background="Gray" ></WrapPanel>
         </ScrollViewer>
     </Grid>
 </Window>

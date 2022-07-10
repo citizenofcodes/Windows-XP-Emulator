@@ -62,6 +62,7 @@ namespace FileExplorer
             if (e.Key == Key.Enter)
             {
                 ShowDirectories(UrlTextBox.Text);
+                _currentPath = UrlTextBox.Text;
             }
         }
 
