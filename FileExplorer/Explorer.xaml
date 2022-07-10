@@ -15,11 +15,11 @@
             <RowDefinition MaxHeight="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button> Back</Button>
+        <Button Click="BackButtonClick"> Back</Button>
         <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="16" Text="C:\\" TextAlignment="Left" KeyDown="UrlTextBox_KeyDown"></TextBox>
 
-        <ScrollViewer Grid.Column="1" Grid.Row="1">
-        <WrapPanel x:Name="ExplorerGrid"  Background="Gray"></WrapPanel>
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+        <WrapPanel x:Name="ExplorerGrid"  Background="Gray" ></WrapPanel>
         </ScrollViewer>
     </Grid>
 </Window>

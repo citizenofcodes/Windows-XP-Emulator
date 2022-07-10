@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FileExplorer
 {
@@ -20,11 +12,13 @@ namespace FileExplorer
     /// </summary>
     public partial class Explorer : Window
     {
+        private string _currentPath;
         public Explorer(FileView file)
         {
             InitializeComponent();
             ShowDirectories(file.Path);
             UrlTextBox.Text = file.Path;
+            
         }
 
         private void ShowDirectories(string path)
@@ -56,7 +50,11 @@ namespace FileExplorer
         private void ButtonBase_OnClick(object sender, MouseButtonEventArgs e)
         {
             var file = (FileView)sender;
-            ShowDirectories(file.Path);
+
+            _currentPath = file.Path;
+            UrlTextBox.Text = _currentPath;
+            ShowDirectories(_currentPath);
+            
         }
 
         private void UrlTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -65,6 +63,20 @@ namespace FileExplorer
             {
                 ShowDirectories(UrlTextBox.Text);
             }
+        }
+
+        private void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+            DirectoryInfo dirinfo = new DirectoryInfo(_currentPath);
+            if (dirinfo.Parent != null)
+            {
+                _currentPath = dirinfo.Parent.FullName;
+            }
+
+            ShowDirectories(_currentPath);
+            UrlTextBox.Text = _currentPath;
+
+
         }
     }
 }

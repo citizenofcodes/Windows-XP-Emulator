@@ -31,8 +31,7 @@ namespace FileExplorer
             InitializeComponent();
             FileName.Text = file.Name;
             Path = file.FullName;
-
-            Button btButton = new Button();
+            ToolTip = $"{file.Name} \n {file.CreationTime} \n {file.Attributes}";
         }
 
 
