@@ -5,21 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
     <Window.Background>
         <ImageBrush ImageSource="Resources/background.jpg">
         </ImageBrush>
     </Window.Background>
+    <Window.Resources>
+       
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
+            <RowDefinition MaxHeight="300"></RowDefinition>
             <RowDefinition MaxHeight="40"></RowDefinition>
+
         </Grid.RowDefinitions>
         <WrapPanel x:Name="DesktopGrid" Orientation="Vertical" ></WrapPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal"  Background="WhiteSmoke">
+        <Grid x:Name="StartUp" Visibility="Visible" Grid.Row="1" Width="250" Background="WhiteSmoke" HorizontalAlignment="Left" >
+            
+            <StackPanel VerticalAlignment="Bottom">
+                <Button>My Computer</Button>
+                <Button Click="ExitBtn_OnClick">Exit</Button>
+            </StackPanel>
+            
+        </Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal"  Background="WhiteSmoke">
             <Button x:Name="WindowsButton" MaxWidth="100" MaxHeight="40" Background="WhiteSmoke">
-                <Image Source="Resources/startupbtn.png"></Image>
+                <Image Source="Resources/startupbtn.png" MouseDown="StartUp_OnMouseDown"></Image>
             </Button>
             <TextBlock x:Name="Clock" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
         </StackPanel>

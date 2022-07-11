@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FileExplorer
 {
@@ -52,6 +53,24 @@ namespace FileExplorer
                 fileobject.MouseDoubleClick += ButtonBase_OnClick;
                 DesktopGrid.Children.Add(fileobject);
             }
+        }
+
+        private void StartUp_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (StartUp.Visibility == Visibility.Visible)
+            {
+                StartUp.Visibility = Visibility.Collapsed;
+            }
+
+            else
+            {
+                StartUp.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ExitBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
