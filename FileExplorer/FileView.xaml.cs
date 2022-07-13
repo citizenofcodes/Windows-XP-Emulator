@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FileExplorer.Applications;
 
 namespace FileExplorer
@@ -22,7 +12,6 @@ namespace FileExplorer
     /// </summary>
     public partial class FileView : UserControl
     {
-        public string Name { get; }
         public string Path { get; }
 
         public string Extension;
@@ -72,13 +61,15 @@ namespace FileExplorer
         }
     }
 
+
+
     public class DirectoryType : FileView
     {
         public DirectoryType(FileInfo file) : base(file)
         {
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri(@"C:\Users\Stanislav\source\repos\FileExplorer\FileExplorer\Resources\foldericon.png");
+            image.UriSource = new Uri(@"\Resources\foldericon.png" , UriKind.Relative);
             image.EndInit();
             FileImage.Source = image;
             Extension = ".dir";
@@ -91,7 +82,7 @@ namespace FileExplorer
         {
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri(@"C:\Users\Stanislav\source\repos\FileExplorer\FileExplorer\Resources\exeicon.png");
+            image.UriSource = new Uri(@"\Resources\exeicon.png", UriKind.Relative);
             image.EndInit();
             FileImage.Source = image;
         }
