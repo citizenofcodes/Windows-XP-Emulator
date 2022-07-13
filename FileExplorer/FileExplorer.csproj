@@ -62,7 +62,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Explorer.xaml">
+    <Page Include="Applications\Explorer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,7 +81,7 @@
     <Compile Include="Applications\NotePad.xaml.cs">
       <DependentUpon>NotePad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Explorer.xaml.cs">
+    <Compile Include="Applications\Explorer.xaml.cs">
       <DependentUpon>Explorer.xaml</DependentUpon>
     </Compile>
     <Compile Include="FileView.xaml.cs">
