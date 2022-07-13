@@ -26,6 +26,7 @@
             
             <StackPanel VerticalAlignment="Bottom">
                 <Button>My Computer</Button>
+                <Button Click="NotePadBtn_OnClick">NotePad</Button>
                 <Button Click="ExitBtn_OnClick">Exit</Button>
             </StackPanel>
             

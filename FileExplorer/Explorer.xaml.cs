@@ -16,14 +16,20 @@ namespace FileExplorer
         public Explorer(FileView file)
         {
             InitializeComponent();
-            ShowDirectories(file.Path);
-            UrlTextBox.Text = file.Path;
-            
+
+            _currentPath = file.Path;
+            ShowDirectories(_currentPath);
+            UrlTextBox.Text = _currentPath;
+
         }
 
-        private void ShowDirectories(string path)
+        public void ShowDirectories(string path)
         {
+            _currentPath = path;
+            UrlTextBox.Text = _currentPath;
+
             ExplorerGrid.Children.Clear();
+
             var directories = Directory.EnumerateDirectories(path);
             var files = Directory.EnumerateFiles(path);
 
@@ -49,12 +55,13 @@ namespace FileExplorer
 
         private void ButtonBase_OnClick(object sender, MouseButtonEventArgs e)
         {
-            var file = (FileView)sender;
-
-            _currentPath = file.Path;
-            UrlTextBox.Text = _currentPath;
-            ShowDirectories(_currentPath);
             
+            var file = (FileView)sender;
+            file.OpenFile(this);
+
+
+
+
         }
 
         private void UrlTextBox_KeyDown(object sender, KeyEventArgs e)

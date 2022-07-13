@@ -1,0 +1,74 @@
+﻿<Window x:Class="FileExplorer.Applications.NotePad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileExplorer.Applications"
+        mc:Ignorable="d"
+        Title="NotePad" Height="450" Width="800" Icon="../Resources/notepad.ico">
+    <Window.Resources>
+        <Style TargetType="{x:Type MenuItem}">
+            <EventSetter Event="Click" Handler="MenuItem_OnClick"></EventSetter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="18" Height="*">
+            </RowDefinition>
+            <RowDefinition>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Background="White">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать"></MenuItem>
+                <MenuItem Header="Новое окно"></MenuItem>
+                <MenuItem Header="Открыть..."></MenuItem>
+                <MenuItem Header="Сохранить"></MenuItem>
+                <MenuItem Header="Сохранить как..."></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Параметры страницы"></MenuItem>
+                <MenuItem Header="Печать..."></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Выход"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Правка">
+                <MenuItem Header="Отменить"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Вырезать"></MenuItem>
+                <MenuItem Header="Копировать"></MenuItem>
+                <MenuItem Header="Вставить"></MenuItem>
+                <MenuItem Header="Удалить"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Поиск с помощью Bing..."></MenuItem>
+                <MenuItem Header="Найти..."></MenuItem>
+                <MenuItem Header="Найти далее"></MenuItem>
+                <MenuItem Header="Найти ранее"></MenuItem>
+                <MenuItem Header="Заменить..."></MenuItem>
+                <MenuItem Header="Перейти..."></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Выделить всё"></MenuItem>
+                <MenuItem Header="Время и дата"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Формат">
+                <MenuItem Header="Перенос по словам"></MenuItem>
+                <MenuItem Header="Шрифт..."></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Вид">
+                <MenuItem Header="Масштаб">
+                    <MenuItem Header="Увеличить"></MenuItem>
+                    <MenuItem Header="Уменьшить"></MenuItem>
+                    <MenuItem Header="Восстановить масштаб по умолчанию"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Header="Посмотреть справку"></MenuItem>
+                <MenuItem Header="Отправить отзыв"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="О программе"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible">
+            <TextBox x:Name="TextField" FontSize="15" FontFamily="Consolas" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+        </ScrollViewer>
+    </Grid>
+</Window>

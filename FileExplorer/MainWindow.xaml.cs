@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using FileExplorer.Applications;
 
 namespace FileExplorer
 {
@@ -57,20 +58,18 @@ namespace FileExplorer
 
         private void StartUp_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (StartUp.Visibility == Visibility.Visible)
-            {
-                StartUp.Visibility = Visibility.Collapsed;
-            }
-
-            else
-            {
-                StartUp.Visibility = Visibility.Visible;
-            }
+            StartUp.Visibility = StartUp.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void ExitBtn_OnClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void NotePadBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            NotePad notePad = new NotePad();
+            notePad.Show();
         }
     }
 }

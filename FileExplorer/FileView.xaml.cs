@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FileExplorer.Applications;
 
 namespace FileExplorer
 {
@@ -24,6 +25,8 @@ namespace FileExplorer
         public string Name { get; }
         public string Path { get; }
 
+        public string Extension;
+
 
         public FileView(FileInfo file)
         { 
@@ -31,6 +34,7 @@ namespace FileExplorer
             InitializeComponent();
             FileName.Text = file.Name;
             Path = file.FullName;
+            Extension = file.Extension;
             ToolTip = $"{file.Name} \n {file.CreationTime} \n {file.Attributes}";
         }
 
@@ -49,6 +53,23 @@ namespace FileExplorer
         {
             UserControlB.Opacity = 0.6;
         }
+
+        public void OpenFile(Explorer explorer)
+        {
+
+            switch (Extension)
+            {
+                case ".txt" or ".ini" or ".dat":
+                    NotePad notePad = new NotePad(Path);
+                    notePad.Show();
+                    break;
+                case ".dir":
+                    explorer.ShowDirectories(Path);
+                    break;
+
+
+            }
+        }
     }
 
     public class DirectoryType : FileView
@@ -60,6 +81,7 @@ namespace FileExplorer
             image.UriSource = new Uri(@"C:\Users\Stanislav\source\repos\FileExplorer\FileExplorer\Resources\foldericon.png");
             image.EndInit();
             FileImage.Source = image;
+            Extension = ".dir";
         }
     }
 
