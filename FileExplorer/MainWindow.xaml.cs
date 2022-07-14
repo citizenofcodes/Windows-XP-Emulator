@@ -1,9 +1,8 @@
-﻿using System;
-using System.Globalization;
+﻿using FileExplorer.Applications;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using FileExplorer.Applications;
 
 namespace FileExplorer
 {
@@ -27,9 +26,19 @@ namespace FileExplorer
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             var file = sender as FileView;
-            Explorer explorer = new Explorer(file);
-           explorer.Show();
 
+            if (file.Extension == ".dir")
+            {
+                Explorer explorer = new Explorer(file);
+                explorer.Show();
+                file.OpenFile(explorer);
+
+            }
+
+            else
+            {
+                file.OpenFile();
+            }
         }
         private void ShowDirectories(string path)
         {

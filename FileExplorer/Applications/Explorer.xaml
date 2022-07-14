@@ -15,7 +15,7 @@
             <RowDefinition MaxHeight="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Source="Resources/backbtn.png" HorizontalAlignment="Center" Width="32" MouseDown="BackButtonClick"></Image>
+        <Image Source="../Resources/backbtn.png" HorizontalAlignment="Center" Width="32" MouseDown="BackButtonClick"></Image>
         <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1" FontSize="16" Text="C:\\" TextAlignment="Left" KeyDown="UrlTextBox_KeyDown"/>
 
         <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">

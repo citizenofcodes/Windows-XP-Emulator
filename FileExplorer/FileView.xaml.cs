@@ -1,9 +1,9 @@
-﻿using System;
+﻿using FileExplorer.Applications;
+using System;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using FileExplorer.Applications;
 
 namespace FileExplorer
 {
@@ -18,8 +18,8 @@ namespace FileExplorer
 
 
         public FileView(FileInfo file)
-        { 
-            
+        {
+
             InitializeComponent();
             FileName.Text = file.Name;
             Path = file.FullName;
@@ -55,10 +55,34 @@ namespace FileExplorer
                 case ".dir":
                     explorer.ShowDirectories(Path);
                     break;
+                case ".img" or ".png" or ".jgeg":
+                    Images images = new Images(Path);
+                    images.Show();
+                    break;
+             
+
+            }
+        }
+
+        public void OpenFile()
+        {
+
+            switch (Extension)
+            {
+                case ".txt" or ".ini" or ".dat":
+                    NotePad notePad = new NotePad(Path);
+                    notePad.Show();
+                    break;
+                case ".img" or ".png" or ".jgeg":
+                    Images images = new Images(Path);
+                    images.Show();
+                    break;
 
 
             }
         }
+
+
     }
 
 
@@ -67,10 +91,7 @@ namespace FileExplorer
     {
         public DirectoryType(FileInfo file) : base(file)
         {
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new Uri(@"\Resources\foldericon.png" , UriKind.Relative);
-            image.EndInit();
+            BitmapImage image = new BitmapImage(new Uri(@"\Resources\foldericon.png", UriKind.Relative));
             FileImage.Source = image;
             Extension = ".dir";
         }
@@ -82,7 +103,20 @@ namespace FileExplorer
         {
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri(@"\Resources\exeicon.png", UriKind.Relative);
+            switch (file.Extension)
+            {
+                case ".img" or ".png" or ".jpeg":
+                    image.UriSource = new Uri(@"\Resources\image-icon.png", UriKind.Relative);
+                    break;
+                case ".txt":
+                    image.UriSource = new Uri(@"\Resources\txticon.png", UriKind.Relative);
+                    break;
+                default:
+                    image.UriSource = new Uri(@"\Resources\exeicon.png", UriKind.Relative);
+                    break;
+
+            }
+            
             image.EndInit();
             FileImage.Source = image;
         }

@@ -58,6 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Applications\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Applications\NotePad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,6 +81,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Applications\Images.xaml.cs">
+      <DependentUpon>Images.xaml</DependentUpon>
     </Compile>
     <Compile Include="Applications\NotePad.xaml.cs">
       <DependentUpon>NotePad.xaml</DependentUpon>
@@ -138,6 +145,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\notepad.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Windows-XP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\txticon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
