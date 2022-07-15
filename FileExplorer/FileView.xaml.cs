@@ -43,7 +43,7 @@ namespace FileExplorer
             UserControlB.Opacity = 0.6;
         }
 
-        public void OpenFile(Explorer explorer)
+        public void OpenFileInExplorer(Explorer explorer)
         {
 
             switch (Extension)
@@ -103,7 +103,7 @@ namespace FileExplorer
         {
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            switch (file.Extension)
+            switch (file.Extension.ToLower())
             {
                 case ".img" or ".png" or ".jpeg":
                     image.UriSource = new Uri(@"\Resources\image-icon.png", UriKind.Relative);
@@ -111,6 +111,9 @@ namespace FileExplorer
                 case ".txt":
                     image.UriSource = new Uri(@"\Resources\txticon.png", UriKind.Relative);
                     break;
+                case ".dll":
+                    image.UriSource = new Uri(@"\Resources\dllicon.png", UriKind.Relative);
+                    break ;
                 default:
                     image.UriSource = new Uri(@"\Resources\exeicon.png", UriKind.Relative);
                     break;

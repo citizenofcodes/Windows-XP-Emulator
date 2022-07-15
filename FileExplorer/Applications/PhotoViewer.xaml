@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorer.Applications"
         mc:Ignorable="d"
-        Title="Images" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Photo Viewer" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="../Resources/PhotoViewer.png">
     <Grid>
         <Image x:Name="ImageViewer"></Image>
     </Grid>

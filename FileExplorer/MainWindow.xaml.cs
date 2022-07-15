@@ -31,7 +31,7 @@ namespace FileExplorer
             {
                 Explorer explorer = new Explorer(file);
                 explorer.Show();
-                file.OpenFile(explorer);
+                file.OpenFileInExplorer(explorer);
 
             }
 

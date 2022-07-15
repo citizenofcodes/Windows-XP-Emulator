@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FileExplorer"
-             mc:Ignorable="d" Height="71" MouseEnter="FileView_OnMouseEnter" MouseLeave="FileView_OnMouseLeave"  MouseLeftButtonDown ="FileView_OnMouseLeftButtonDown" Width="80" >
+             mc:Ignorable="d" Height="80" MouseEnter="FileView_OnMouseEnter" MouseLeave="FileView_OnMouseLeave"  MouseLeftButtonDown ="FileView_OnMouseLeftButtonDown" Width="80" >
     <UserControl.Background>
         <SolidColorBrush x:Name="UserControlB" Color="AntiqueWhite" Opacity="0"></SolidColorBrush>
     </UserControl.Background>

@@ -58,7 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Applications\Images.xaml">
+    <Page Include="Applications\PhotoViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,8 +82,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Applications\Images.xaml.cs">
-      <DependentUpon>Images.xaml</DependentUpon>
+    <Compile Include="Applications\PhotoViewer.xaml.cs">
+      <DependentUpon>PhotoViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Applications\NotePad.xaml.cs">
       <DependentUpon>NotePad.xaml</DependentUpon>
@@ -154,6 +154,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\txticon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PhotoViewer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ExplorerIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dllicon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

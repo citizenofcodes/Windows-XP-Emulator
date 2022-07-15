@@ -57,7 +57,7 @@ namespace FileExplorer
         {
             
             var file = (FileView)sender;
-            file.OpenFile(this);
+            file.OpenFileInExplorer(this);
 
 
 
