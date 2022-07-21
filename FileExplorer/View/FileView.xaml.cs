@@ -1,6 +1,8 @@
 ﻿using FileExplorer.Applications;
+using FileExplorer.Infrastructure.Command;
 using System;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -10,13 +12,13 @@ namespace FileExplorer
     /// <summary>
     /// Логика взаимодействия для FileView.xaml
     /// </summary>
-    public partial class FileView : UserControl
+    public partial class FileView : UserControl 
     {
         public string Path { get; }
 
         public string Extension;
 
-
+        public ICommand OpenFileCommand { get; }
         public FileView(FileInfo file)
         {
 
@@ -25,6 +27,27 @@ namespace FileExplorer
             Path = file.FullName;
             Extension = file.Extension;
             ToolTip = $"{file.Name} \n {file.CreationTime} \n {file.Attributes}";
+
+            OpenFileCommand = new Command(CommandOpenFile);
+
+            DataContext = this;
+           
+        }
+
+        private void CommandOpenFile(object obj)
+        {
+            if (Extension == ".dir" && obj.ToString().Contains("MainWindow"))
+            {
+                Explorer explorer = new Explorer(this);
+                explorer.Show();
+                OpenFileInExplorer(explorer);
+
+            }
+
+            else
+            {
+                OpenFile();
+            }
         }
 
 
@@ -59,7 +82,7 @@ namespace FileExplorer
                     Images images = new Images(Path);
                     images.Show();
                     break;
-             
+
 
             }
         }
@@ -82,7 +105,6 @@ namespace FileExplorer
             }
         }
 
-
     }
 
 
@@ -95,6 +117,7 @@ namespace FileExplorer
             FileImage.Source = image;
             Extension = ".dir";
         }
+
     }
 
     public class FileType : FileView
@@ -113,13 +136,13 @@ namespace FileExplorer
                     break;
                 case ".dll":
                     image.UriSource = new Uri(@"\Resources\dllicon.png", UriKind.Relative);
-                    break ;
+                    break;
                 default:
                     image.UriSource = new Uri(@"\Resources\exeicon.png", UriKind.Relative);
                     break;
 
             }
-            
+
             image.EndInit();
             FileImage.Source = image;
         }
