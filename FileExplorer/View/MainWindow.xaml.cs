@@ -1,10 +1,6 @@
-﻿using FileExplorer.Applications;
-using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows;
 
-namespace FileExplorer
+namespace FileExplorer.View
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml

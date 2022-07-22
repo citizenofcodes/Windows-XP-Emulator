@@ -1,26 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace FileExplorer.Applications
+namespace FileExplorer.Applications.PhotoViewer
 {
     /// <summary>
     /// Логика взаимодействия для Images.xaml
     /// </summary>
     public partial class Images : Window
     {
-        private string _imagepath;
+        private readonly string _imagepath;
         public Images(string Path)
         {
             InitializeComponent();

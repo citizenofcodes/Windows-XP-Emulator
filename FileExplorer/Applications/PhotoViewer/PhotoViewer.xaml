@@ -1,11 +1,11 @@
-﻿<Window x:Class="FileExplorer.Applications.Images"
+﻿<Window x:Class="FileExplorer.Applications.PhotoViewer.Images"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorer.Applications"
         mc:Ignorable="d"
-        Title="Photo Viewer" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="../Resources/PhotoViewer.png">
+        Title="Photo Viewer" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="/Resources/PhotoViewer.png">
     <Grid>
         <Image x:Name="ImageViewer"></Image>
     </Grid>

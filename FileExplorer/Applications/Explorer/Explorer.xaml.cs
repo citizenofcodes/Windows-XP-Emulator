@@ -1,7 +1,8 @@
-﻿using FileExplorer.Applications.ApplicationsViewModels;
-using System.Windows;
+﻿using System.Windows;
+using FileExplorer.Applications.Explorer.ViewModel;
+using FileExplorer.View;
 
-namespace FileExplorer
+namespace FileExplorer.Applications.Explorer
 {
     /// <summary>
     /// Логика взаимодействия для Explorer.xaml

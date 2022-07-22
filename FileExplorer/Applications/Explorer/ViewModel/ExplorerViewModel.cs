@@ -1,12 +1,12 @@
-﻿using FileExplorer.Infrastructure.Command;
-using FileExplorer.Model;
-using FileExplorer.ViewModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Security.Policy;
 using System.Windows.Input;
+using FileExplorer.Infrastructure.Command;
+using FileExplorer.Model;
+using FileExplorer.View;
+using FileExplorer.ViewModel;
 
-namespace FileExplorer.Applications.ApplicationsViewModels
+namespace FileExplorer.Applications.Explorer.ViewModel
 {
     internal class ExplorerViewModel : BaseVm
     {
@@ -50,7 +50,7 @@ namespace FileExplorer.Applications.ApplicationsViewModels
         public ExplorerViewModel(FileView file)
         {
             ClickBackButtonCommand = new Command(ClickBackButton);
-            UrlEnterCommand = new Command(UrlEnterPush);
+            UrlEnterCommand = new Command(o => { CurrentPath = UrlText; });
             CurrentPath = file.Path;
             UrlText = CurrentPath;
         }
@@ -68,10 +68,6 @@ namespace FileExplorer.Applications.ApplicationsViewModels
             set { _urlText = value; OnPropertyChanged(); }
         }
 
-        private void UrlEnterPush(object obj)
-        {
-            CurrentPath = UrlText;
-        }
 
 
         public void ClickBackButton(object obj)

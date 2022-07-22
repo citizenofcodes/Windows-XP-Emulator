@@ -6,6 +6,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using FileExplorer.Applications;
+using FileExplorer.Applications.NotePad;
+using FileExplorer.View;
 
 namespace FileExplorer.ViewModel
 {
