@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:vm="clr-namespace:FileExplorer.Applications.ApplicationsViewModels"
         mc:Ignorable="d"
-        Title="Explorer" Height="450" Width="800" Icon="../Resources/ExplorerIcon.png">
+        Title="Explorer" Height="450" Width="800" Icon="/Resources/ExplorerIcon.png">
 
 
     <Grid>
@@ -19,7 +19,7 @@
             <RowDefinition MaxHeight="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Source="../Resources/backbtn.png" HorizontalAlignment="Center" Width="32">
+        <Image Source="/Resources/backbtn.png" HorizontalAlignment="Center" Width="32">
             <Image.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding ClickBackButtonCommand}"></MouseBinding>
             </Image.InputBindings>
