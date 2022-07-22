@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using FileExplorer.Applications.ApplicationsViewModels;
+using FileExplorer.Model;
 
 namespace FileExplorer
 {
@@ -19,7 +21,10 @@ namespace FileExplorer
         public string Extension;
 
         public ICommand OpenFileCommand { get; }
+
+        public Explorer explorer;
         public FileView(FileInfo file)
+
         {
 
             InitializeComponent();
@@ -27,6 +32,7 @@ namespace FileExplorer
             Path = file.FullName;
             Extension = file.Extension;
             ToolTip = $"{file.Name} \n {file.CreationTime} \n {file.Attributes}";
+            
 
             OpenFileCommand = new Command(CommandOpenFile);
 
@@ -34,19 +40,23 @@ namespace FileExplorer
            
         }
 
+
+
         private void CommandOpenFile(object obj)
         {
             if (Extension == ".dir" && obj.ToString().Contains("MainWindow"))
             {
-                Explorer explorer = new Explorer(this);
+                explorer = new Explorer(this);
                 explorer.Show();
-                OpenFileInExplorer(explorer);
+               
 
             }
 
             else
             {
+                explorer = obj as Explorer;
                 OpenFile();
+                
             }
         }
 
@@ -66,7 +76,7 @@ namespace FileExplorer
             UserControlB.Opacity = 0.6;
         }
 
-        public void OpenFileInExplorer(Explorer explorer)
+        public void OpenFileInExplorer()
         {
 
             switch (Extension)
@@ -76,7 +86,7 @@ namespace FileExplorer
                     notePad.Show();
                     break;
                 case ".dir":
-                    explorer.ShowDirectories(Path);
+                    DirectoryModel.ShowDirectories(Path);
                     break;
                 case ".img" or ".png" or ".jgeg":
                     Images images = new Images(Path);
@@ -99,6 +109,9 @@ namespace FileExplorer
                 case ".img" or ".png" or ".jgeg":
                     Images images = new Images(Path);
                     images.Show();
+                    break;
+                case ".dir":
+                    explorer.viewModel.CurrentPath = Path;
                     break;
 
 

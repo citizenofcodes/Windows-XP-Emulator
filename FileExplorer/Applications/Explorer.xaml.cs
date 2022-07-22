@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using FileExplorer.Applications.ApplicationsViewModels;
 using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Input;
 
 namespace FileExplorer
 {
@@ -12,79 +8,14 @@ namespace FileExplorer
     /// </summary>
     public partial class Explorer : Window
     {
-        private string _currentPath;
+        internal ExplorerViewModel viewModel;
         public Explorer(FileView file)
         {
             InitializeComponent();
-
-            _currentPath = file.Path;
-            ShowDirectories(_currentPath);
-            UrlTextBox.Text = _currentPath;
-
-        }
-
-        public void ShowDirectories(string path)
-        {
-            _currentPath = path;
-            UrlTextBox.Text = _currentPath;
-
-            ExplorerGrid.Children.Clear();
-
-            var directories = Directory.EnumerateDirectories(path);
-            var files = Directory.EnumerateFiles(path);
-
-            foreach (var directory in directories)
-            {
-                FileInfo fileinfo = new FileInfo(directory);
-                var fileobject = new DirectoryType(fileinfo);
-                fileobject.MouseDoubleClick += ButtonBase_OnClick;
-                //directoryFile.Click += ButtonBase_OnClick;
-                ExplorerGrid.Children.Add(fileobject);
-
-            }
-
-            foreach (var file in files)
-            {
-                FileInfo fileinfo = new FileInfo(file);
-                var fileobject = new FileType(fileinfo);
-                fileobject.MouseDoubleClick += ButtonBase_OnClick;
-                ExplorerGrid.Children.Add(fileobject);
-            }
+            viewModel = new ExplorerViewModel(file);
+            DataContext = viewModel;
         }
 
 
-        private void ButtonBase_OnClick(object sender, MouseButtonEventArgs e)
-        {
-            
-            var file = (FileView)sender;
-            file.OpenFileInExplorer(this);
-
-
-
-
-        }
-
-        private void UrlTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                ShowDirectories(UrlTextBox.Text);
-                _currentPath = UrlTextBox.Text;
-            }
-        }
-
-        private void BackButtonClick(object sender, RoutedEventArgs e)
-        {
-            DirectoryInfo dirinfo = new DirectoryInfo(_currentPath);
-            if (dirinfo.Parent != null)
-            {
-                _currentPath = dirinfo.Parent.FullName;
-            }
-
-            ShowDirectories(_currentPath);
-            UrlTextBox.Text = _currentPath;
-
-
-        }
     }
 }
