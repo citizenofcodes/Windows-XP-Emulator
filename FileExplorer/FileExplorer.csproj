@@ -76,7 +76,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\FileViewControl.xaml">
+    <Page Include="Infrastructure\Controls\FileViewControl\FileViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,11 +105,11 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="View\FileViewControl.xaml.cs">
+    <Compile Include="Infrastructure\Controls\FileViewControl\FileViewControl.xaml.cs">
       <DependentUpon>FileViewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Command\Command.cs" />
-    <Compile Include="View\FileViewControlViewModel.cs" />
+    <Compile Include="Infrastructure\Controls\FileViewControl\FileViewControlViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
