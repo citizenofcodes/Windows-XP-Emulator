@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorer"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:cmd="clr-namespace:FileExplorer.Infrastructure.Command"
         mc:Ignorable="d"
-        Title="Explorer" Height="450" Width="800" Icon="/Resources/ExplorerIcon.png">
+        Title="Explorer" Height="450" Width="800" Icon="/Resources/ExplorerIcon.png" WindowStartupLocation="CenterScreen">
 
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{x:Static cmd:CloseWindowCommand.instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"></KeyBinding>
+    </Window.InputBindings>
 
     <Grid>
         <Grid.ColumnDefinitions>

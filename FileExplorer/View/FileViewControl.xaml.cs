@@ -77,27 +77,6 @@ namespace FileExplorer.View
             UserControlB.Opacity = 0.6;
         }
 
-        public void OpenFileInExplorer()
-        {
-
-            switch (Extension)
-            {
-                case ".txt" or ".ini" or ".dat":
-                    NotePad notePad = new NotePad(Path);
-                    notePad.Show();
-                    break;
-                case ".dir":
-                    DirectoryModel.ShowDirectories(Path);
-                    break;
-                case ".img" or ".png" or ".jgeg":
-                    Images images = new Images(Path);
-                    images.Show();
-                    break;
-
-
-            }
-        }
-
         public void OpenFile()
         {
 

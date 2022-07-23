@@ -3,14 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FileExplorer.Applications"
+        xmlns:local="clr-namespace:FileExplorer.Applications.NotePad"
+        xmlns:vm="clr-namespace:FileExplorer.Applications.NotePad.ViewModel"
+        xmlns:cmd="clr-namespace:FileExplorer.Infrastructure.Command"
         mc:Ignorable="d"
-        Title="NotePad" Height="450" Width="800" Icon="/Resources/notepad.ico">
+        Title="NotePad" Height="450" Width="800" Icon="/Resources/notepad.ico" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style TargetType="{x:Type MenuItem}">
-            <EventSetter Event="Click" Handler="MenuItem_OnClick"></EventSetter>
-        </Style>
     </Window.Resources>
+    <Window.DataContext>
+        <vm:NotePadViewModel></vm:NotePadViewModel>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Control" Key="S" Command="{Binding SaveFileCommand}"></KeyBinding>
+        <KeyBinding Key="Escape" Command="{x:Static cmd:CloseWindowCommand.instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"></KeyBinding>
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="18" Height="*">
@@ -23,7 +29,7 @@
                 <MenuItem Header="Создать"></MenuItem>
                 <MenuItem Header="Новое окно"></MenuItem>
                 <MenuItem Header="Открыть..."></MenuItem>
-                <MenuItem Header="Сохранить"></MenuItem>
+                <MenuItem Header="Сохранить" Command="{Binding SaveFileCommand}"></MenuItem>
                 <MenuItem Header="Сохранить как..."></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="Параметры страницы"></MenuItem>
@@ -68,7 +74,7 @@
             </MenuItem>
         </Menu>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible">
-            <TextBox x:Name="TextField" FontSize="15" FontFamily="Consolas" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+            <TextBox x:Name="TextField" Text="{Binding TextFieldText,UpdateSourceTrigger=PropertyChanged}" FontSize="15" FontFamily="Consolas" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
         </ScrollViewer>
     </Grid>
 </Window>

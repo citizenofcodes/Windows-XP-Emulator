@@ -5,11 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using FileExplorer.View;
 
 namespace FileExplorer.Model
 {
-    internal static class DirectoryModel
+    internal  class DirectoryModel
     {
         public static ObservableCollection<FileView> ShowDirectories(string path)
         {
@@ -35,5 +36,32 @@ namespace FileExplorer.Model
 
             return directorieslist;
         }
+
+        public string ReadFileToString(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            string fileText = sr.ReadToEnd();
+
+            fs.Close();
+            sr.Close();
+
+            return fileText;
+        }
+
+        public void SaveFile(string path, string textFieldText)
+        {
+            FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine(textFieldText);
+
+
+            sw.Close();
+            fs.Close();
+
+            MessageBox.Show("Saved!");
+        }
+
     }
 }

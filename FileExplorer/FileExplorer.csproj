@@ -89,6 +89,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Applications\Explorer\ViewModel\ExplorerViewModel.cs" />
+    <Compile Include="Applications\NotePad\ViewModel\NotePadViewModel.cs" />
     <Compile Include="Applications\PhotoViewer\PhotoViewer.xaml.cs">
       <DependentUpon>PhotoViewer.xaml</DependentUpon>
     </Compile>
