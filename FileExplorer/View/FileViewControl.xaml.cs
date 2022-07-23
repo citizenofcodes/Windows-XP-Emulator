@@ -87,8 +87,8 @@ namespace FileExplorer.View
                     notePad.Show();
                     break;
                 case ".img" or ".png" or ".jgeg":
-                    Images images = new Images(Path);
-                    images.Show();
+                    PhotoViewer photoViewer = new PhotoViewer(Path);
+                    photoViewer.Show();
                     break;
                 case ".dir":
                     explorer.viewModel.CurrentPath = Path;

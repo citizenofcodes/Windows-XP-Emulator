@@ -99,6 +99,7 @@
     <Compile Include="Applications\Explorer\Explorer.xaml.cs">
       <DependentUpon>Explorer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Applications\PhotoViewer\ViewModel\PhotoViewerViewModel.cs" />
     <Compile Include="Infrastructure\Command\CloseWindowCommand.cs" />
     <Compile Include="Model\DirectoryModel.cs" />
     <Compile Include="Properties\Annotations.cs" />

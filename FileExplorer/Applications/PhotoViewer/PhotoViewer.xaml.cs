@@ -2,34 +2,22 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using FileExplorer.Applications.PhotoViewer.ViewModel;
 
 namespace FileExplorer.Applications.PhotoViewer
 {
     /// <summary>
     /// Логика взаимодействия для Images.xaml
     /// </summary>
-    public partial class Images : Window
+    public partial class PhotoViewer : Window
     {
-        private readonly string _imagepath;
-        public Images(string Path)
+        public PhotoViewer(string path)
         {
             InitializeComponent();
-            _imagepath = Path;
-            LoadImage();
-            
-            FileInfo fileInfo = new FileInfo(Path);
-            Title = fileInfo.Name;
-            
+            DataContext = new PhotoViewerViewModel(path);
+
         }
 
-        private void LoadImage()
-        {
-
-            BitmapImage image = new BitmapImage(new Uri(_imagepath, UriKind.Absolute));
-            
-
-            ImageViewer.Source = image;
-        }
 
     }
 }
