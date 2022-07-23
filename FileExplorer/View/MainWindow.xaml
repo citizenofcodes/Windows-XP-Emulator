@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:FileExplorer.ViewModel"
         xmlns:command="clr-namespace:FileExplorer.Infrastructure.Command"
         mc:Ignorable="d"
-        Title="Desktop" x:Name="Window" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="../Resources/Windows-XP.png">
+        Title="Desktop" x:Name="Window" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="../Resources/Windows-XP.png">
     <Window.Background>
         <ImageBrush ImageSource="../Resources/background.jpg">
         </ImageBrush>

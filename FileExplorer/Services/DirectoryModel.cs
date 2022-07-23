@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using FileExplorer.View;
 
 namespace FileExplorer.Model
 {
-    internal  class DirectoryModel
+    internal interface IDirectoryModel
+    {
+        string ReadFileToString(string path);
+        void SaveFile(string path, string textFieldText);
+    }
+
+    internal  class DirectoryModel : IDirectoryModel
     {
         public static ObservableCollection<FileView> ShowDirectories(string path)
         {
-            ObservableCollection<FileView> directorieslist = new ObservableCollection<FileView>();
+            var directorieslist = new ObservableCollection<FileView>();
             var directories = Directory.EnumerateDirectories(path);
             var files = Directory.EnumerateFiles(path);
 
