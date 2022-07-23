@@ -78,6 +78,7 @@ namespace FileExplorer.ViewModel
 
             Clock = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             Directories = DirectoryModel.ShowDirectories(@"C:\");
+            OnPropertyChanged(nameof(Directories));
         }
 
         

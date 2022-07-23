@@ -6,10 +6,51 @@
              xmlns:local="clr-namespace:FileExplorer"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:command="clr-namespace:FileExplorer.Infrastructure.Command"
-             mc:Ignorable="d" Height="80" x:Name="FileViewControl" MouseEnter="FileView_OnMouseEnter" MouseLeave="FileView_OnMouseLeave"  MouseLeftButtonDown ="FileView_OnMouseLeftButtonDown" Width="80" >
+             xmlns:vm="clr-namespace:FileExplorer.View"
+             mc:Ignorable="d" Height="80" x:Name="FileViewControl" Width="80" ToolTip="{Binding Tooltip}">
     <UserControl.Background>
         <SolidColorBrush x:Name="UserControlB" Color="AntiqueWhite" Opacity="0"></SolidColorBrush>
     </UserControl.Background>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="MouseEnter">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="UserControlB" Storyboard.TargetProperty="Opacity"
+                                     From="0" To="0.2"
+                                     Duration="0">
+
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeave">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="UserControlB" Storyboard.TargetProperty="Opacity"
+                                     From="0.2" To="0"
+                                     Duration="0">
+
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeftButtonDown">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="UserControlB" Storyboard.TargetProperty="Opacity"
+                                     From="0.2" To="0.6"
+                                     Duration="0">
+
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <UserControl.DataContext>
+        <vm:FileViewControlViewModel />
+    </UserControl.DataContext>
 
 
     <i:Interaction.Triggers>
@@ -19,8 +60,8 @@
     </i:Interaction.Triggers>
 
     <StackPanel>
-        <Image x:Name="FileImage" Source="../Resources/foldericon.png" MaxHeight="50" MaxWidth="100" />
-        <TextBlock x:Name="FileName" Text="Program Files"  Foreground="Azure" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+        <Image x:Name="FileImage" Source="{Binding Image}" MaxHeight="50" MaxWidth="100" />
+        <TextBlock x:Name="FileName" Text="{Binding FileName}"   Foreground="Azure" HorizontalAlignment="Center" TextWrapping="Wrap"/>
         
     </StackPanel>
 </UserControl>

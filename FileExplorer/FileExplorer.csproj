@@ -109,6 +109,7 @@
       <DependentUpon>FileViewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Command\Command.cs" />
+    <Compile Include="View\FileViewControlViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

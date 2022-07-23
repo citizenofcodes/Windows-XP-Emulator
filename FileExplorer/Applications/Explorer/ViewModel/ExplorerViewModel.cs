@@ -47,7 +47,7 @@ namespace FileExplorer.Applications.Explorer.ViewModel
             }
         }
 
-        public ExplorerViewModel(FileView file)
+        public ExplorerViewModel(FileViewControlViewModel file)
         {
             ClickBackButtonCommand = new Command(ClickBackButton);
             UrlEnterCommand = new Command(o => { CurrentPath = UrlText; });

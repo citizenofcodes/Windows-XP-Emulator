@@ -22,15 +22,16 @@ namespace FileExplorer.Model
             foreach (var directory in directories)
             {
                 FileInfo fileinfo = new FileInfo(directory);
-                var fileobject = new DirectoryType(fileinfo);
+                var fileobject = new FileView(fileinfo);
                 directorieslist.Add(fileobject);
+                
 
             }
 
             foreach (var file in files)
             {
                 FileInfo fileinfo = new FileInfo(file);
-                var fileobject = new FileType(fileinfo);
+                var fileobject = new FileView(fileinfo);
                 directorieslist.Add(fileobject);
             }
 

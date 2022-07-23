@@ -10,7 +10,7 @@ namespace FileExplorer.Applications.Explorer
     public partial class Explorer : Window
     {
         internal ExplorerViewModel viewModel;
-        public Explorer(FileView file)
+        internal Explorer(FileViewControlViewModel file)
         {
             InitializeComponent();
             viewModel = new ExplorerViewModel(file);
