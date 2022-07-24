@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using FileExplorer.Applications.PhotoViewer.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.Applications.PhotoViewer
 {
@@ -11,10 +12,12 @@ namespace FileExplorer.Applications.PhotoViewer
     /// </summary>
     public partial class PhotoViewer : Window
     {
-        public PhotoViewer(string path)
+        public PhotoViewer()
         {
             InitializeComponent();
-            DataContext = new PhotoViewerViewModel(path);
+
+            
+
 
         }
 

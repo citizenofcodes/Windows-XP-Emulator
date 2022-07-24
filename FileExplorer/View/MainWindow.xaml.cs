@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using FileExplorer.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.View
 {
@@ -10,6 +12,7 @@ namespace FileExplorer.View
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = App.AppHost.Services.GetRequiredService<MainWindowViewModel>();
         }
 
 

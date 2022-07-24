@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using FileExplorer.ViewModel;
 
 namespace FileExplorer.Applications.PhotoViewer.ViewModel
 {
     
-    internal class PhotoViewerViewModel
+    internal class PhotoViewerViewModel:BaseVm
     {
         private BitmapImage _image;
 
@@ -20,16 +21,29 @@ namespace FileExplorer.Applications.PhotoViewer.ViewModel
         }
 
         public string Title { get; set; }
-        public PhotoViewerViewModel(string imagePath)
-        {
-            Title = new FileInfo(imagePath).Name;
 
-            image = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
-        }
-
+        public string ImagePath { get; set; }
         public PhotoViewerViewModel()
         {
             
+        }
+
+
+        public void SetImagePath(string imagePath)
+        {
+            if (imagePath != null)
+            {
+                ImagePath = imagePath;
+
+                Title = new FileInfo(ImagePath).Name;
+
+                image = new BitmapImage(new Uri(ImagePath, UriKind.Absolute));
+
+                OnPropertyChanged(nameof(Title));
+                OnPropertyChanged(nameof(image));
+            }
+
+           
         }
     }
 }

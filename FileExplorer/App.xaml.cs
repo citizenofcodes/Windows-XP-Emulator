@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Windows;
+using FileExplorer.Applications.Explorer.ViewModel;
+using FileExplorer.Applications.NotePad.ViewModel;
+using FileExplorer.Applications.PhotoViewer.ViewModel;
 using FileExplorer.Model;
 using FileExplorer.View;
+using FileExplorer.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -20,7 +24,11 @@ namespace FileExplorer
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<MainWindow>();
-                    services.AddTransient<IDirectoryModel, DirectoryModel>();
+                    services.AddTransient<IDirectoryModel, DirectoryService>();
+                    services.AddTransient<NotePadViewModel>();
+                    services.AddTransient<PhotoViewerViewModel>();
+                    services.AddTransient<ExplorerViewModel>();
+                    services.AddTransient<MainWindowViewModel>();
 
                 }) 
                 .Build();

@@ -10,9 +10,6 @@
         Title="NotePad" Height="450" Width="800" Icon="/Resources/notepad.ico" WindowStartupLocation="CenterScreen">
     <Window.Resources>
     </Window.Resources>
-    <Window.DataContext>
-        <vm:NotePadViewModel></vm:NotePadViewModel>
-    </Window.DataContext>
     <Window.InputBindings>
         <KeyBinding Modifiers="Control" Key="S" Command="{Binding SaveFileCommand}"></KeyBinding>
         <KeyBinding Key="Escape" Command="{x:Static cmd:CloseWindowCommand.instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"></KeyBinding>

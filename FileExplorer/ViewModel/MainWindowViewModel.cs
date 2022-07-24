@@ -13,6 +13,7 @@ namespace FileExplorer.ViewModel
 {
     internal class MainWindowViewModel : BaseVm
     {
+        private readonly IDirectoryModel _directoryModel;
         public ICommand WindowOnLoad { get; set; }
 
         public ICommand StartUpButtonClick { get; set; }
@@ -51,8 +52,9 @@ namespace FileExplorer.ViewModel
         public string StartUpVisibility { get; set; } = "Collapsed";
 
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IDirectoryModel directoryModel)
         {
+            _directoryModel = directoryModel;
             WindowOnLoad = new Command(OnLoad);
             StartUpButtonClick = new Command(StartUpClick);
             NotePadOpenButton = new Command(OpenNotepad);
@@ -77,7 +79,7 @@ namespace FileExplorer.ViewModel
         {
 
             Clock = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            Directories = DirectoryModel.ShowDirectories(@"C:\");
+            Directories = _directoryModel.ShowDirectories(@"C:\");
             OnPropertyChanged(nameof(Directories));
         }
 

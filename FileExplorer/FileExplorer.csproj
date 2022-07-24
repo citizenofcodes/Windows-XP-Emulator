@@ -238,9 +238,8 @@
     </Compile>
     <Compile Include="Applications\PhotoViewer\ViewModel\PhotoViewerViewModel.cs" />
     <Compile Include="Infrastructure\Command\CloseWindowCommand.cs" />
-    <Compile Include="Services\DirectoryModel.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\DirectoryService.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Infrastructure\Controls\FileViewControl\FileViewControl.xaml.cs">

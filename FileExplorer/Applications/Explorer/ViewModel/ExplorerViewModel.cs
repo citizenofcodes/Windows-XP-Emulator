@@ -10,6 +10,7 @@ namespace FileExplorer.Applications.Explorer.ViewModel
 {
     internal class ExplorerViewModel : BaseVm
     {
+        private readonly IDirectoryModel _directoryModel;
 
         public ICommand UrlEnterCommand { get; set; }
 
@@ -47,12 +48,12 @@ namespace FileExplorer.Applications.Explorer.ViewModel
             }
         }
 
-        public ExplorerViewModel(FileViewControlViewModel file)
+        public ExplorerViewModel(IDirectoryModel directoryModel)
         {
+            _directoryModel = directoryModel;
             ClickBackButtonCommand = new Command(ClickBackButton);
             UrlEnterCommand = new Command(o => { CurrentPath = UrlText; });
-            CurrentPath = file.Path;
-            UrlText = CurrentPath;
+         
         }
 
         private string _urlText;
@@ -68,7 +69,13 @@ namespace FileExplorer.Applications.Explorer.ViewModel
             set { _urlText = value; OnPropertyChanged(); }
         }
 
-
+        public void Init(FileViewControlViewModel File)
+        {
+            CurrentPath = File.Path;
+            UrlText = CurrentPath;
+            OnPropertyChanged(CurrentPath);
+            OnPropertyChanged(UrlText);
+        }
 
         public void ClickBackButton(object obj)
         {
@@ -82,7 +89,7 @@ namespace FileExplorer.Applications.Explorer.ViewModel
 
         public void OnPathChanged()
         {
-            Directories = DirectoryModel.ShowDirectories(CurrentPath);
+            Directories = _directoryModel.ShowDirectories(CurrentPath);
             OnPropertyChanged(nameof(CurrentPath));
             OnPropertyChanged(nameof(UrlText));
         }

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using FileExplorer.Applications.Explorer.ViewModel;
 using FileExplorer.View;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.Applications.Explorer
 {
@@ -9,12 +10,11 @@ namespace FileExplorer.Applications.Explorer
     /// </summary>
     public partial class Explorer : Window
     {
-        internal ExplorerViewModel viewModel;
-        internal Explorer(FileViewControlViewModel file)
+       
+        internal Explorer()
         {
             InitializeComponent();
-            viewModel = new ExplorerViewModel(file);
-            DataContext = viewModel;
+            
         }
 
 

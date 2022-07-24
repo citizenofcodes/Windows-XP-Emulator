@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using FileExplorer.Applications.NotePad.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.Applications.NotePad
 {
@@ -16,13 +17,7 @@ namespace FileExplorer.Applications.NotePad
             InitializeComponent();
         }
 
-        public NotePad(string path)
-        {
-            InitializeComponent();
-            DataContext = new NotePadViewModel(path);
-
-        }
-
+      
 
 
     }

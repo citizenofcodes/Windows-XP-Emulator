@@ -13,10 +13,7 @@
         <ImageBrush ImageSource="../Resources/background.jpg">
         </ImageBrush>
     </Window.Background>
-    
-    <Window.DataContext>
-        <vm:MainWindowViewModel />
-    </Window.DataContext>
+
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

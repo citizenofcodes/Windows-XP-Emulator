@@ -12,6 +12,7 @@ namespace FileExplorer.Applications.NotePad.ViewModel
 {
     internal class NotePadViewModel:BaseVm
     {
+        private readonly IDirectoryModel _accessdata;
 
         public string Path { get; set; }
 
@@ -22,29 +23,31 @@ namespace FileExplorer.Applications.NotePad.ViewModel
             set { _textFieldText = value; OnPropertyChanged(); }
         }
 
-        private DirectoryModel directoryModel;
+        //private DirectoryModel directoryModel;
 
         public ICommand SaveFileCommand { get; set; }
-        public NotePadViewModel(string path)
+        public NotePadViewModel(IDirectoryModel accessdata)
         {
-            Path = path;
-
-            directoryModel = new DirectoryModel();
+            _accessdata = accessdata;
+            //directoryModel = new DirectoryModel();
             SaveFileCommand = new Command(SaveFile);
+            
+        }
 
-            TextFieldText = directoryModel.ReadFileToString(Path);
-
+        public void SetupDirectory(string path)
+        {
+            if (path != null)
+            {
+                Path = path;
+                TextFieldText = _accessdata.ReadFileToString(Path);
+            }
         }
 
         private void SaveFile(object o)
         {
-           directoryModel.SaveFile(Path,TextFieldText);
+            _accessdata.SaveFile(Path,TextFieldText);
         }
 
-        public NotePadViewModel()
-        {
-            
-        }
 
 
 
