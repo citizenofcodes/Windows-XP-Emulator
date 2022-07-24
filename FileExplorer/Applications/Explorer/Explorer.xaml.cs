@@ -20,12 +20,5 @@ namespace FileExplorer.Applications.Explorer
             
         }
 
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            var serive = App.AppHost.Services.GetRequiredService<ITaskBarService>();
-            serive.DeleteTaskItem(this);
-
-            base.OnClosing(e);
-        }
     }
 }

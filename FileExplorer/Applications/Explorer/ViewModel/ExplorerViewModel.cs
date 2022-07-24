@@ -1,10 +1,14 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using FileExplorer.Infrastructure.Command;
 using FileExplorer.Model;
+using FileExplorer.Services;
 using FileExplorer.View;
 using FileExplorer.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.Applications.Explorer.ViewModel
 {
@@ -77,6 +81,7 @@ namespace FileExplorer.Applications.Explorer.ViewModel
             OnPropertyChanged(UrlText);
         }
 
+
         public void ClickBackButton(object obj)
         {
             DirectoryInfo dirinfo = new DirectoryInfo(CurrentPath);
@@ -93,5 +98,6 @@ namespace FileExplorer.Applications.Explorer.ViewModel
             OnPropertyChanged(nameof(CurrentPath));
             OnPropertyChanged(nameof(UrlText));
         }
+        public void OnClosing(object sender,CancelEventArgs args) => App.AppHost.Services.GetRequiredService<ITaskBarService>().DeleteTaskItem((Window)sender);
     }
 }
