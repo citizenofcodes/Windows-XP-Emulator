@@ -49,9 +49,6 @@
         </EventTrigger>
     </UserControl.Triggers>
 
-    <UserControl.DataContext>
-        <vm:FileViewControlViewModel />
-    </UserControl.DataContext>
 
 
     <i:Interaction.Triggers>

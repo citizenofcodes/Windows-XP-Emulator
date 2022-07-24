@@ -9,30 +9,37 @@ using FileExplorer.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using FileExplorer.Model;
+using FileExplorer.Services;
 
 namespace FileExplorer.View
 {
     internal class FileViewControlViewModel : BaseVm
     {
+        private readonly ITaskBarService _taskBarService;
 
         private string _extension;
 
         private Explorer _explorer;
-        public string Path { get; }
-        public string Tooltip { get; }
-        public string FileName { get; }
+        public string Path { get; set; }
+        public string Tooltip { get; set; }
+        public string FileName { get; set; }
         public BitmapImage Image { get; set; }
+
+        public FileInfo file { get; set; }
         public ICommand OpenFileCommand { get; }
 
-        public FileViewControlViewModel()
+        public FileViewControlViewModel(ITaskBarService taskBarService)
         {
-
+            _taskBarService = taskBarService;
+            OpenFileCommand = new Command(CommandOpenFile);
         }
-        public FileViewControlViewModel(FileInfo file)
-        {
 
+        public void FileInitialization()
+        {
             FileName = file.Name;
             Path = file.FullName;
 
@@ -41,15 +48,13 @@ namespace FileExplorer.View
             Tooltip = $"{file.Name} \n {file.CreationTime} \n {file.Attributes}";
 
             PickIcon();
-
-
-            OpenFileCommand = new Command(CommandOpenFile);
-
         }
+
 
 
         private void CommandOpenFile(object window)
         {
+            Window openedApplication = null;
             switch (_extension)
             {
                 case ".txt" or ".ini" or ".dat":
@@ -58,6 +63,8 @@ namespace FileExplorer.View
                     notePad.DataContext = npvm;
                     notePad.Show();
                     npvm.SetupDirectory(Path);
+
+                    openedApplication = notePad;
                     break;
                 case ".img" or ".png" or ".jgeg":
                     var phvm = App.AppHost.Services.GetRequiredService<PhotoViewerViewModel>();
@@ -65,6 +72,7 @@ namespace FileExplorer.View
                     photoViewer.DataContext = phvm;
                     photoViewer.Show();
                     phvm.SetImagePath(Path);
+                    openedApplication = photoViewer;
                     break;
                 case ".dir":
                     if (IsDesktop(window))
@@ -74,6 +82,7 @@ namespace FileExplorer.View
                         var vm = App.AppHost.Services.GetRequiredService<ExplorerViewModel>();
                         _explorer.DataContext = vm;
                         vm.Init(this);
+                        openedApplication = _explorer;
                     }
 
                     else
@@ -82,11 +91,20 @@ namespace FileExplorer.View
                         if (_explorer != null && _explorer.DataContext is ExplorerViewModel explorer)
                         {
                             explorer.CurrentPath = Path;
+                            
                         }
                     }
                     break;
-
+                    
             }
+
+            if (openedApplication == null) return;
+            _taskBarService.AddTaskItem(new TaskBarItem
+            {
+                Image = new BitmapImage(new Uri(openedApplication.Icon.ToString())),
+                Title = FileName,
+                Window = openedApplication
+            });
         }
 
         private void PickIcon()

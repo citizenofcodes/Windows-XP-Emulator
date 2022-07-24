@@ -4,21 +4,28 @@ using FileExplorer.Model;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using FileExplorer.Applications;
+using FileExplorer.Applications.Explorer;
 using FileExplorer.Applications.NotePad;
+using FileExplorer.Applications.PhotoViewer;
+using FileExplorer.Services;
 using FileExplorer.View;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.ViewModel
 {
     internal class MainWindowViewModel : BaseVm
     {
         private readonly IDirectoryModel _directoryModel;
+        private readonly ITaskBarService _taskBarService;
         public ICommand WindowOnLoad { get; set; }
 
         public ICommand StartUpButtonClick { get; set; }
 
         public ICommand NotePadOpenButton { get; }
+
 
 
         private string _clock;
@@ -36,6 +43,7 @@ namespace FileExplorer.ViewModel
         }
 
         private ObservableCollection<FileView> _directories;
+
         public ObservableCollection<FileView> Directories
         {
 
@@ -49,21 +57,39 @@ namespace FileExplorer.ViewModel
             }
         }
 
+        private ObservableCollection<TaskBarItem> _TaskBarWindows;
+        public ObservableCollection<TaskBarItem> TaskBarWindows
+        {
+            get
+            {
+                return _TaskBarWindows;
+            }
+
+            set
+            {
+                _TaskBarWindows = value; OnPropertyChanged();
+            }
+        }
+
         public string StartUpVisibility { get; set; } = "Collapsed";
 
 
-        public MainWindowViewModel(IDirectoryModel directoryModel)
+        public MainWindowViewModel(IDirectoryModel directoryModel, ITaskBarService taskBarService)
         {
             _directoryModel = directoryModel;
+            _taskBarService = taskBarService;
             WindowOnLoad = new Command(OnLoad);
             StartUpButtonClick = new Command(StartUpClick);
             NotePadOpenButton = new Command(OpenNotepad);
+
+            TaskBarWindows = taskBarService.GeTaskBarItems();
         }
 
         private void OpenNotepad(object obj)
         {
             NotePad notePad = new NotePad();
             notePad.Show();
+            MessageBox.Show(TaskBarWindows.Count.ToString());
         }
 
 

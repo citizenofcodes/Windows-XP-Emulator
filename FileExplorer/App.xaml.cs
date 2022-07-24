@@ -4,6 +4,7 @@ using FileExplorer.Applications.Explorer.ViewModel;
 using FileExplorer.Applications.NotePad.ViewModel;
 using FileExplorer.Applications.PhotoViewer.ViewModel;
 using FileExplorer.Model;
+using FileExplorer.Services;
 using FileExplorer.View;
 using FileExplorer.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,9 @@ namespace FileExplorer
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<MainWindow>();
+                    services.AddSingleton<ITaskBarService, TaskBarService>();
                     services.AddTransient<IDirectoryModel, DirectoryService>();
+                    services.AddTransient<FileViewControlViewModel>();
                     services.AddTransient<NotePadViewModel>();
                     services.AddTransient<PhotoViewerViewModel>();
                     services.AddTransient<ExplorerViewModel>();
@@ -34,7 +37,7 @@ namespace FileExplorer
                 .Build();
         }
 
-
+       
         protected override async void OnStartup(StartupEventArgs e)
         {
             await AppHost!.StartAsync();

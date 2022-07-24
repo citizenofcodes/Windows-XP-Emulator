@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using FileExplorer.View;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.Model
 {
@@ -27,6 +29,10 @@ namespace FileExplorer.Model
             {
                 FileInfo fileinfo = new FileInfo(directory);
                 var fileobject = new FileView(fileinfo);
+                var vm = App.AppHost.Services.GetRequiredService<FileViewControlViewModel>();
+                fileobject.DataContext = vm;
+                vm.file = fileinfo;
+                vm.FileInitialization();
                 directorieslist.Add(fileobject);
                 
 
@@ -36,6 +42,10 @@ namespace FileExplorer.Model
             {
                 FileInfo fileinfo = new FileInfo(file);
                 var fileobject = new FileView(fileinfo);
+                var vm = App.AppHost.Services.GetRequiredService<FileViewControlViewModel>();
+                fileobject.DataContext = vm;
+                vm.file = fileinfo;
+                vm.FileInitialization();
                 directorieslist.Add(fileobject);
             }
 

@@ -238,8 +238,10 @@
     </Compile>
     <Compile Include="Applications\PhotoViewer\ViewModel\PhotoViewerViewModel.cs" />
     <Compile Include="Infrastructure\Command\CloseWindowCommand.cs" />
+    <Compile Include="Model\TaskBarItem.cs" />
     <Compile Include="Services\DirectoryService.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Services\TaskBarService.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Infrastructure\Controls\FileViewControl\FileViewControl.xaml.cs">
@@ -318,9 +320,7 @@
   <ItemGroup>
     <Resource Include="Resources\dllicon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

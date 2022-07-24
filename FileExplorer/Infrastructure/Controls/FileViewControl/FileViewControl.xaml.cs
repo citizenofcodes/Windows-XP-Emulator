@@ -17,13 +17,9 @@ namespace FileExplorer.View
     /// </summary>
     public partial class FileView : UserControl
     {
-        FileViewControlViewModel viewModel;
-
         public FileView(FileInfo file)
         {
-            InitializeComponent(); 
-            viewModel = new FileViewControlViewModel(file);
-            DataContext = viewModel;
+            InitializeComponent();
         }
     }
 }

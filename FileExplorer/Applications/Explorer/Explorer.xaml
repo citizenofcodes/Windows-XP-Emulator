@@ -13,6 +13,7 @@
         <KeyBinding Key="Escape" Command="{x:Static cmd:CloseWindowCommand.instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"></KeyBinding>
     </Window.InputBindings>
 
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="30"/>
