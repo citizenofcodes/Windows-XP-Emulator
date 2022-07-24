@@ -15,6 +15,11 @@
         </ImageBrush>
     </Window.Background>
 
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0.5"></Setter>
+        </Style>
+    </Window.Resources>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -48,18 +53,18 @@
             
         </Grid>
         <StackPanel Grid.Row="2" Orientation="Horizontal"  Background="WhiteSmoke">
-            <Button  MaxWidth="100" Command="{Binding StartUpButtonClick}" MaxHeight="40" Background="WhiteSmoke">
+            <Button  BorderThickness="0" Command="{Binding StartUpButtonClick}" MaxHeight="40" Background="WhiteSmoke">
                
-                <Image Source="../Resources/startupbtn.png"></Image>
+                <Image Source="../Resources/startupbtn.png" Margin="0,5,0,0"></Image>
             </Button>
             <!--<TextBlock  Text="{Binding Clock}" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>-->
 
             <ItemsControl ItemsSource="{Binding TaskBarWindows}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="40" Height="40" ToolTip="{Binding Title}">
-                            <Button>
-                            <Image Source="{Binding Image}"></Image>
+                        <StackPanel Width="40" Height="40" ToolTip="{Binding Title}" Margin="0">
+                            <Button Command="{Binding MaximizeMinimuzeCommand}" Margin="0">
+                                <Image Source="{Binding Image}" MinHeight="40"></Image>
                             </Button>
                         </StackPanel>
                     </DataTemplate>

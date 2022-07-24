@@ -26,6 +26,8 @@ namespace FileExplorer.ViewModel
 
         public ICommand NotePadOpenButton { get; }
 
+       
+
 
 
         private string _clock;
@@ -81,9 +83,12 @@ namespace FileExplorer.ViewModel
             WindowOnLoad = new Command(OnLoad);
             StartUpButtonClick = new Command(StartUpClick);
             NotePadOpenButton = new Command(OpenNotepad);
+            
 
             TaskBarWindows = taskBarService.GeTaskBarItems();
         }
+
+        
 
         private void OpenNotepad(object obj)
         {

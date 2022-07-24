@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FileExplorer.Applications.NotePad"
         xmlns:vm="clr-namespace:FileExplorer.Applications.NotePad.ViewModel"
         xmlns:cmd="clr-namespace:FileExplorer.Infrastructure.Command"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="NotePad" Height="450" Width="800" Icon="/Resources/notepad.ico" WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -14,6 +15,13 @@
         <KeyBinding Modifiers="Control" Key="S" Command="{Binding SaveFileCommand}"></KeyBinding>
         <KeyBinding Key="Escape" Command="{x:Static cmd:CloseWindowCommand.instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"></KeyBinding>
     </Window.InputBindings>
+
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Closing">
+            <b:CallMethodAction MethodName="OnClosing" TargetObject="{Binding}"  />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="18" Height="*">

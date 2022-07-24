@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using FileExplorer.Services;
 using FileExplorer.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.Applications.PhotoViewer.ViewModel
 {
@@ -45,5 +49,7 @@ namespace FileExplorer.Applications.PhotoViewer.ViewModel
 
            
         }
+
+        public void OnClosing(object sender, CancelEventArgs args) => App.AppHost.Services.GetRequiredService<ITaskBarService>().DeleteTaskItem((Window)sender);
     }
 }

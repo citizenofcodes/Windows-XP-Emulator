@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using FileExplorer.Infrastructure.Command;
 using FileExplorer.Model;
+using FileExplorer.Services;
 using FileExplorer.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FileExplorer.Applications.NotePad.ViewModel
 {
@@ -48,7 +52,7 @@ namespace FileExplorer.Applications.NotePad.ViewModel
             _accessdata.SaveFile(Path,TextFieldText);
         }
 
-
+        public void OnClosing(object sender, CancelEventArgs args) => App.AppHost.Services.GetRequiredService<ITaskBarService>().DeleteTaskItem((Window)sender);
 
 
     }
