@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:vm="clr-namespace:FileExplorer.ViewModel"
         xmlns:command="clr-namespace:FileExplorer.Infrastructure.Command"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         Title="Desktop" x:Name="Window" Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="../Resources/Windows-XP.png">
@@ -54,9 +55,13 @@
             
         </Grid>
         <StackPanel Grid.Row="2" Orientation="Horizontal"  Background="WhiteSmoke">
-            <Button  BorderThickness="0" Command="{Binding StartUpButtonClick}" MaxHeight="40" Background="WhiteSmoke">
-               
-                <Image Source="../Resources/startupbtn.png" Margin="0,5,0,0"></Image>
+            <Button  BorderThickness="0" Command="{Binding StartUpButtonClick}" MaxHeight="40" Width="40" Background="WhiteSmoke">
+                <fa:ImageAwesome Icon="Windows" Height="20" Opacity="0.7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <fa:ImageAwesome.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding ClickBackButtonCommand}"></MouseBinding>
+                    </fa:ImageAwesome.InputBindings>
+                </fa:ImageAwesome>
+                <!--<Image Source="../Resources/startupbtn.png" Margin="0,5,0,0"></Image>-->
             </Button>
             <!--<TextBlock  Text="{Binding Clock}" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>-->
 
