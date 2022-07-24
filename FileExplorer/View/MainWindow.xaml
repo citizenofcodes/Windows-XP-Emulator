@@ -17,7 +17,8 @@
 
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="BorderThickness" Value="0.5"></Setter>
+            <Setter Property="BorderThickness" Value="0.3"></Setter>
+            <Setter Property="Background" Value="WhiteSmoke"></Setter>
         </Style>
     </Window.Resources>
 

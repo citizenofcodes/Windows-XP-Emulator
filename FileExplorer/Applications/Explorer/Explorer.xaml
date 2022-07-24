@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:vm="clr-namespace:FileExplorer.Applications.Explorer.ViewModel"
         xmlns:cmd="clr-namespace:FileExplorer.Infrastructure.Command"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         d:DataContext="{d:DesignInstance Type=vm:ExplorerViewModel}"
         mc:Ignorable="d"
         Title="Explorer" Height="450" Width="800" x:Name="Explorers" Icon="/Resources/ExplorerIcon.png" WindowStartupLocation="CenterScreen">
@@ -20,7 +21,8 @@
             <i:CallMethodAction MethodName="OnClosing" TargetObject="{Binding}"  />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-        <Grid>
+
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="30"/>
             <ColumnDefinition></ColumnDefinition>
@@ -28,27 +30,33 @@
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition MaxHeight="20"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Source="/Resources/backbtn.png" HorizontalAlignment="Center" Width="32">
-            <Image.InputBindings>
+
+        <fa:ImageAwesome Icon="ArrowLeft" Height="13" Width="20" Opacity="0.7" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <fa:ImageAwesome.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding ClickBackButtonCommand}"></MouseBinding>
-            </Image.InputBindings>
-        </Image>
-        <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1" FontSize="16" Text="{Binding UrlText , UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left">
+            </fa:ImageAwesome.InputBindings>
+        </fa:ImageAwesome>
+       
+        <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1" FontSize="12" Text="{Binding UrlText , UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" VerticalAlignment="Center">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding UrlEnterCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        
 
-        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+    
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="Gray">
             <ItemsControl ItemsSource="{Binding Directories}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" Background="Gray"/>
+                        <WrapPanel Orientation="Horizontal" Margin="10"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
+            <TextBlock Text="{Binding FileCount}" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0"></TextBlock>
+        </StackPanel>
     </Grid>
 </Window>

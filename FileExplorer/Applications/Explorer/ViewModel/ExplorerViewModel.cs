@@ -73,12 +73,18 @@ namespace FileExplorer.Applications.Explorer.ViewModel
             set { _urlText = value; OnPropertyChanged(); }
         }
 
+        public string FileCount
+        {
+            get { return $"Элементов: {Directories?.Count}"; }
+            set { }
+        }
+
+
         public void Init(FileViewControlViewModel File)
         {
             CurrentPath = File.Path;
             UrlText = CurrentPath;
-            OnPropertyChanged(CurrentPath);
-            OnPropertyChanged(UrlText);
+           
         }
 
 
@@ -97,6 +103,7 @@ namespace FileExplorer.Applications.Explorer.ViewModel
             Directories = _directoryModel.ShowDirectories(CurrentPath);
             OnPropertyChanged(nameof(CurrentPath));
             OnPropertyChanged(nameof(UrlText));
+            OnPropertyChanged(nameof(FileCount));
         }
         public void OnClosing(object sender,CancelEventArgs args) => App.AppHost.Services.GetRequiredService<ITaskBarService>().DeleteTaskItem((Window)sender);
     }
