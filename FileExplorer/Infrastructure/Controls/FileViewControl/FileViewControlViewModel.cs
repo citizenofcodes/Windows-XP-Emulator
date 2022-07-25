@@ -140,8 +140,17 @@ namespace FileExplorer.View
 
             }
 
-            image.EndInit();
-            Image = image;
+            try
+            {
+                image.EndInit();
+                Image = image;
+            }
+
+            catch
+            {
+                Console.WriteLine($"Значок файла {FileName} не найден!");
+                Image = ParseIcon();
+            }
         }
 
         public BitmapSource ParseIcon()
