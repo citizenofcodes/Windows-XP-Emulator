@@ -108,9 +108,9 @@ namespace FileExplorer.ViewModel
 
         public void OnLoad(object obj)
         {
-
+           var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             Clock = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            Directories = _directoryModel.ShowDirectories(@"C:\");
+            Directories = _directoryModel.ShowDirectories(desktopPath);
             OnPropertyChanged(nameof(Directories));
         }
 

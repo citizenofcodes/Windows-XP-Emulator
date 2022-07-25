@@ -11,9 +11,11 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using FileExplorer.Model;
 using FileExplorer.Services;
+using Toolbelt.Drawing;
 
 namespace FileExplorer.View
 {
@@ -27,7 +29,7 @@ namespace FileExplorer.View
         public string Path { get; set; }
         public string Tooltip { get; set; }
         public string FileName { get; set; }
-        public BitmapImage Image { get; set; }
+        public ImageSource Image { get; set; }
 
         public FileInfo file { get; set; }
         public ICommand OpenFileCommand { get; }
@@ -57,7 +59,7 @@ namespace FileExplorer.View
             Window openedApplication = null;
             switch (_extension)
             {
-                case ".txt" or ".ini" or ".dat":
+                case ".txt" or ".ini" or ".dat" or ".log":
                     var npvm = App.AppHost.Services.GetRequiredService<NotePadViewModel>();
                     NotePad notePad = new NotePad();
                     notePad.DataContext = npvm;
@@ -66,7 +68,7 @@ namespace FileExplorer.View
 
                     openedApplication = notePad;
                     break;
-                case ".img" or ".png" or ".jgeg":
+                case ".img" or ".png" or ".jgeg" or ".ico" or ".jpg":
                     var phvm = App.AppHost.Services.GetRequiredService<PhotoViewerViewModel>();
                     PhotoViewer photoViewer = new PhotoViewer();
                     photoViewer.DataContext = phvm;
@@ -116,23 +118,43 @@ namespace FileExplorer.View
                 case ".dir":
                     image.UriSource = new Uri(@"\Resources\foldericon.png", UriKind.Relative);
                     break;
-                case ".img" or ".png" or ".jpeg":
+                case ".img" or ".png" or ".jpeg" or ".ico" or ".jpg":
                     image.UriSource = new Uri(@"\Resources\image-icon.png", UriKind.Relative);
                     break;
-                case ".txt":
+                case ".txt" or ".log" or ".ini":
                     image.UriSource = new Uri(@"\Resources\txticon.png", UriKind.Relative);
                     break;
                 case ".dll":
                     image.UriSource = new Uri(@"\Resources\dllicon.png", UriKind.Relative);
                     break;
-                default:
-                    image.UriSource = new Uri(@"\Resources\exeicon.png", UriKind.Relative);
+                case ".exe":
+                    var imageStream = new MemoryStream();
+                    IconExtractor.Extract1stIconTo(Path, imageStream);
+                    image.StreamSource = imageStream;
                     break;
+                default:
+                    Image = ParseIcon();
+                    return;
+                   
+                //image.UriSource = new Uri(@"\Resources\exeicon.png", UriKind.Relative);
 
             }
 
             image.EndInit();
             Image = image;
+        }
+
+        public BitmapSource ParseIcon()
+        {
+            var icon = System.Drawing.Icon.ExtractAssociatedIcon(Path).ToBitmap();
+
+            var a = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                icon.GetHbitmap(),
+                IntPtr.Zero,
+                System.Windows.Int32Rect.Empty,
+                BitmapSizeOptions.FromWidthAndHeight(400, 400));
+            return a;
+
         }
 
         private bool IsDesktop(object window) => _extension == ".dir" && window.ToString().Contains("MainWindow");

@@ -8,7 +8,7 @@
              xmlns:command="clr-namespace:FileExplorer.Infrastructure.Command"
              xmlns:vm="clr-namespace:FileExplorer.View"
              d:DataContext="{d:DesignInstance Type=vm:FileViewControlViewModel}"
-             mc:Ignorable="d" Height="80" x:Name="FileViewControl" Width="80" ToolTip="{Binding Tooltip}">
+             mc:Ignorable="d" Height="85" Width="85" x:Name="FileViewControl"  ToolTip="{Binding Tooltip}">
     <UserControl.Background>
         <SolidColorBrush x:Name="UserControlB" Color="AntiqueWhite" Opacity="0"></SolidColorBrush>
     </UserControl.Background>
