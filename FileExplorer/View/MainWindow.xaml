@@ -34,6 +34,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition MaxHeight="300"></RowDefinition>
             <RowDefinition MaxHeight="40"></RowDefinition>
+            
 
         </Grid.RowDefinitions>
         
@@ -54,21 +55,34 @@
             </StackPanel>
             
         </Grid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal"  Background="WhiteSmoke">
-            <Button  BorderThickness="0" Command="{Binding StartUpButtonClick}" MaxHeight="40" Width="40" Background="WhiteSmoke">
+        
+        
+        
+        <DockPanel Grid.Row="2" Background="WhiteSmoke">
+        
+            <Button DockPanel.Dock="Left" BorderThickness="0" Command="{Binding StartUpButtonClick}" MaxHeight="40" Width="40" Background="WhiteSmoke">
                 <fa:ImageAwesome Icon="Windows" Height="20" Opacity="0.7" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <fa:ImageAwesome.InputBindings>
                         <MouseBinding Gesture="LeftClick" Command="{Binding ClickBackButtonCommand}"></MouseBinding>
                     </fa:ImageAwesome.InputBindings>
                 </fa:ImageAwesome>
-                <!--<Image Source="../Resources/startupbtn.png" Margin="0,5,0,0"></Image>-->
             </Button>
-            <!--<TextBlock  Text="{Binding Clock}" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>-->
+            
+            <TextBlock DockPanel.Dock="Right"  Text="{Binding Clock}"  VerticalAlignment="Center" Margin="0,0,20,0"></TextBlock>
 
             <ItemsControl ItemsSource="{Binding TaskBarWindows}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Width="40" Height="40" ToolTip="{Binding Title}" Margin="0">
+                            <StackPanel.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Close Window" Command="{x:Static command:CloseWindowCommand.instance}" CommandParameter="{Binding Window}">
+                                            <MenuItem.Icon>
+                                                <fa:ImageAwesome Icon="Close" Height="10" ></fa:ImageAwesome>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
                             <Button Command="{Binding MaximizeMinimuzeCommand}" Margin="0">
                                 <Image Source="{Binding Image}" MinHeight="40"></Image>
                             </Button>
@@ -82,14 +96,7 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
-
-            <!--<Button>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/Resources/ExplorerIcon.png"></Image>
-                </StackPanel>
-            </Button>-->
-
-        </StackPanel>
+        </DockPanel>
     </Grid>
 
 

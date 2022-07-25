@@ -3,6 +3,8 @@ using FileExplorer.Infrastructure.Command;
 using FileExplorer.Model;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -59,17 +61,17 @@ namespace FileExplorer.ViewModel
             }
         }
 
-        private ObservableCollection<TaskBarItem> _TaskBarWindows;
+        private ObservableCollection<TaskBarItem> _taskBarWindows;
         public ObservableCollection<TaskBarItem> TaskBarWindows
         {
             get
             {
-                return _TaskBarWindows;
+                return _taskBarWindows;
             }
 
             set
             {
-                _TaskBarWindows = value; OnPropertyChanged();
+                _taskBarWindows = value; OnPropertyChanged();
             }
         }
 
@@ -94,7 +96,7 @@ namespace FileExplorer.ViewModel
         {
             NotePad notePad = new NotePad();
             notePad.Show();
-            MessageBox.Show(TaskBarWindows.Count.ToString());
+            
         }
 
 
@@ -112,8 +114,32 @@ namespace FileExplorer.ViewModel
             Clock = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             Directories = _directoryModel.ShowDirectories(desktopPath);
             OnPropertyChanged(nameof(Directories));
+            ClockUpdateTask();
         }
 
+
+        #region Clock
+
         
+
+      
+        private async Task ClockUpdateTask()
+        {
+            try
+            {
+                while (true)
+                {
+                    Clock = $"   {DateTime.Now:h:mm:ss}\n{DateTime.Now:d}";
+                    OnPropertyChanged(Clock);
+                    await Task.Delay(1000); // подождать одну секунду
+                }
+            }
+            catch (OperationCanceledException)
+            { } // сработала отмена, ничего не делать
+        }
+
+
+        #endregion
+
     }
 }
