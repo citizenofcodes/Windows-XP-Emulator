@@ -17,9 +17,10 @@
     </Window.Background>
 
     <Window.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="ButtonDesktop">
             <Setter Property="BorderThickness" Value="0.3"></Setter>
             <Setter Property="Background" Value="WhiteSmoke"></Setter>
+            
         </Style>
     </Window.Resources>
 
@@ -34,10 +35,10 @@
             <RowDefinition></RowDefinition>
             <RowDefinition MaxHeight="300"></RowDefinition>
             <RowDefinition MaxHeight="40"></RowDefinition>
-            
+
 
         </Grid.RowDefinitions>
-        
+
         <ItemsControl ItemsSource="{Binding Directories}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -45,21 +46,55 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-       
-        <Grid x:Name="StartUp" Visibility="{Binding StartUpVisibility}" Grid.Row="1" Width="250" Background="WhiteSmoke" HorizontalAlignment="Left" >
-            
-            <StackPanel VerticalAlignment="Bottom">
-                <Button>My Computer</Button>
-                <Button Command="{Binding NotePadOpenButton}">NotePad</Button>
-                <Button Command="{x:Static command:CloseWindowCommand.instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window} }">Exit</Button>
+
+        <Grid x:Name="StartUp" Visibility="{Binding StartUpVisibility}" Grid.Row="1" Width="250" Background="WhiteSmoke" HorizontalAlignment="Left">
+
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel >
+                <fa:ImageAwesome Icon="User" MaxHeight="70" Margin="0,20,0,0"></fa:ImageAwesome>
+                <TextBlock Text="{Binding UserName}" HorizontalAlignment="Center"  FontSize="15" Margin="0,12,0,0"></TextBlock>
             </StackPanel>
-            
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+                <StackPanel.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource ButtonDesktop}">
+                        <Setter Property="Height" Value="30"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Desktop" Height="13" VerticalAlignment="Center" Margin="5,0,0,0" ></fa:ImageAwesome>
+                        <TextBlock Text="Мой компьютер"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding NotePadOpenButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Gear" Height="13" VerticalAlignment="Center" Margin="5,0,0,0" ></fa:ImageAwesome>
+                        <TextBlock Text="Панель управления"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Command="{x:Static command:CloseWindowCommand.instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window} }">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="PowerOff" Height="13" VerticalAlignment="Center" Margin="5,0,0,0" ></fa:ImageAwesome>
+                        <TextBlock Text="Завершение работы"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
         </Grid>
-        
-        
-        
+
+
+
         <DockPanel Grid.Row="2" Background="WhiteSmoke">
-        
+
             <Button DockPanel.Dock="Left" BorderThickness="0" Command="{Binding StartUpButtonClick}" MaxHeight="40" Width="40" Background="WhiteSmoke">
                 <fa:ImageAwesome Icon="Windows" Height="20" Opacity="0.7" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <fa:ImageAwesome.InputBindings>
@@ -67,7 +102,7 @@
                     </fa:ImageAwesome.InputBindings>
                 </fa:ImageAwesome>
             </Button>
-            
+
             <TextBlock DockPanel.Dock="Right"  Text="{Binding Clock}"  VerticalAlignment="Center" Margin="0,0,20,0"></TextBlock>
 
             <ItemsControl ItemsSource="{Binding TaskBarWindows}">
@@ -77,20 +112,20 @@
                             <StackPanel.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Close Window" Command="{x:Static command:CloseWindowCommand.instance}" CommandParameter="{Binding Window}">
-                                            <MenuItem.Icon>
-                                                <fa:ImageAwesome Icon="Close" Height="10" ></fa:ImageAwesome>
-                                            </MenuItem.Icon>
-                                        </MenuItem>
+                                        <MenuItem.Icon>
+                                            <fa:ImageAwesome Icon="Close" Height="10" ></fa:ImageAwesome>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
                                 </ContextMenu>
                             </StackPanel.ContextMenu>
-                            <Button Command="{Binding MaximizeMinimuzeCommand}" Margin="0">
+                            <Button Command="{Binding MaximizeMinimuzeCommand}" BorderThickness="0.3,0" Style="{StaticResource ButtonDesktop}">
                                 <Image Source="{Binding Image}" MinHeight="40"></Image>
                             </Button>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
-                  
+
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>

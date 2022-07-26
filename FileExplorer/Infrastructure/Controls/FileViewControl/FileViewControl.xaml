@@ -59,7 +59,11 @@
 
     <StackPanel>
         <Image x:Name="FileImage" Source="{Binding Image}" MaxHeight="50" MaxWidth="100" />
-        <TextBlock x:Name="FileName" Text="{Binding FileName}"   Foreground="Azure" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+        <TextBlock x:Name="FileName" Text="{Binding FileName}"   Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap">
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="1" BlurRadius="0.2" RenderingBias="Quality" Color="#FF000000"></DropShadowEffect>
+            </TextBlock.Effect>
+        </TextBlock>
         
     </StackPanel>
 </UserControl>

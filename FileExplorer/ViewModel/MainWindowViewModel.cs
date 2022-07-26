@@ -28,9 +28,13 @@ namespace FileExplorer.ViewModel
 
         public ICommand NotePadOpenButton { get; }
 
-       
-
-
+        public string UserName
+        {
+            get
+            {
+                return Environment.UserName;
+            }
+        }
 
         private string _clock;
         public string Clock
@@ -61,17 +65,17 @@ namespace FileExplorer.ViewModel
             }
         }
 
-        private ObservableCollection<TaskBarItem> _taskBarWindows;
+        private ObservableCollection<TaskBarItem> _TaskBarWindows;
         public ObservableCollection<TaskBarItem> TaskBarWindows
         {
             get
             {
-                return _taskBarWindows;
+                return _TaskBarWindows;
             }
 
             set
             {
-                _taskBarWindows = value; OnPropertyChanged();
+                _TaskBarWindows = value; OnPropertyChanged();
             }
         }
 
