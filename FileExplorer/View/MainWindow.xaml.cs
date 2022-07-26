@@ -14,6 +14,7 @@ namespace FileExplorer.View
             InitializeComponent();
             DataContext = App.AppHost.Services.GetRequiredService<MainWindowViewModel>();
         }
+    
        //gg
 
        
